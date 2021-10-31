@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beatport.Id3Sync.Runner", "Beatport.Id3Sync.Runner\Beatport.Id3Sync.Runner.csproj", "{8C44743A-264D-45DC-BDE0-E274F37FD591}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beatport.Id3Sync.TagManager", "Beatport.Id3Sync.TagManager\Beatport.Id3Sync.TagManager.csproj", "{F1070FBE-1C89-4455-B3DD-83166E045D59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "id3lib", "id3lib", "{7E57985B-2B66-4C7D-AF86-5A775B2888C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Id3Lib", "id3lib\ID3Lib\Id3Lib.csproj", "{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3Lib", "id3lib\Mp3Lib\Mp3Lib.csproj", "{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagEditor", "id3lib\ID3Editor\TagEditor.csproj", "{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "id3lib\Utils\Utils.csproj", "{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C44743A-264D-45DC-BDE0-E274F37FD591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C44743A-264D-45DC-BDE0-E274F37FD591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C44743A-264D-45DC-BDE0-E274F37FD591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C44743A-264D-45DC-BDE0-E274F37FD591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1070FBE-1C89-4455-B3DD-83166E045D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1070FBE-1C89-4455-B3DD-83166E045D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1070FBE-1C89-4455-B3DD-83166E045D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1070FBE-1C89-4455-B3DD-83166E045D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8} = {7E57985B-2B66-4C7D-AF86-5A775B2888C0}
+		{E16E2254-A7A2-4E45-95B9-8613C67B3FD4} = {7E57985B-2B66-4C7D-AF86-5A775B2888C0}
+		{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF} = {7E57985B-2B66-4C7D-AF86-5A775B2888C0}
+		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06} = {7E57985B-2B66-4C7D-AF86-5A775B2888C0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05759136-0290-4F3A-B0FD-C3A9A9A56033}
+	EndGlobalSection
+EndGlobal
