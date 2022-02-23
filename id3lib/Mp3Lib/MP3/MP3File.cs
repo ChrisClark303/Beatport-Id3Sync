@@ -108,7 +108,7 @@ namespace Mp3Lib
         {
             // cheeky optimisation: 
             // if no changes have been made, nothing to do
-            if( _mp3FileData != null )
+            if ( _mp3FileData != null )
             {
                 if( _mp3FileData.Update() == Mp3FileData.CacheDataState.eDirty )
                 {

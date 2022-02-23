@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Directory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\fredd\Downloads</Value>
+      <Value Profile="(Default)">C:\Users\fredd\Documents\Test</Value>
     </Setting>
     <Setting Name="ApplicationVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

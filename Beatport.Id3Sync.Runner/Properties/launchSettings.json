@@ -2,7 +2,7 @@
   "profiles": {
     "Beatport.Id3Sync.Runner": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\fredd\\Downloads\\5629147_Sick Of Promises_(Original Mix).mp3\""
+      "commandLineArgs": "\"C:\\Users\\fredd\\Downloads\""
     }
   }
 }

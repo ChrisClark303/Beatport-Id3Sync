@@ -25,7 +25,7 @@ namespace TagEditor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\fredd\\Downloads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\fredd\\Documents\\Test")]
         public string Directory {
             get {
                 return ((string)(this["Directory"]));

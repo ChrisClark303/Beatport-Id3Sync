@@ -39,94 +39,114 @@ namespace TagEditor
             this._mainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._scanMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainListBox = new System.Windows.Forms.ListBox();
-            this._listBoxContextMenu = new System.Windows.Forms.ContextMenuStrip();
+            this._listBoxContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._editListBoxMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._advancedEditListBoxMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._compactListBoxMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._launchListBoxMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._removeV2tag = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu.SuspendLayout();
+            this._listBoxContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainMenu
             // 
-            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
+            this._mainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._mainMenuItem});
+            this._mainMenu.Location = new System.Drawing.Point(0, 0);
+            this._mainMenu.Name = "_mainMenu";
+            this._mainMenu.Size = new System.Drawing.Size(200, 24);
+            this._mainMenu.TabIndex = 0;
             // 
             // _mainMenuItem
             // 
-            //this._mainMenuItem.Index = 0;
-            this._mainMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
+            this._mainMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._scanMenuItem});
+            this._mainMenuItem.Name = "_mainMenuItem";
+            this._mainMenuItem.Size = new System.Drawing.Size(56, 20);
             this._mainMenuItem.Text = "Main";
             // 
             // _scanMenuItem
             // 
-            //this._scanMenuItem.i = 0;
+            this._scanMenuItem.Name = "_scanMenuItem";
+            this._scanMenuItem.Size = new System.Drawing.Size(188, 26);
             this._scanMenuItem.Text = "Scan Directory";
             this._scanMenuItem.Click += new System.EventHandler(this._scanMenuItem_Click);
             // 
             // _mainListBox
             // 
-            this._mainListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._mainListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._mainListBox.ContextMenuStrip = this._listBoxContextMenu;
-            this._mainListBox.ItemHeight = 16;
-            this._mainListBox.Location = new System.Drawing.Point(10, 9);
+            this._mainListBox.ItemHeight = 20;
+            this._mainListBox.Location = new System.Drawing.Point(12, 12);
             this._mainListBox.Name = "_mainListBox";
-            this._mainListBox.Size = new System.Drawing.Size(653, 308);
+            this._mainListBox.Size = new System.Drawing.Size(650, 264);
             this._mainListBox.TabIndex = 0;
             this._mainListBox.DoubleClick += new System.EventHandler(this._mainListBox_DoubleClick);
             this._mainListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._mainListBox_MouseDown);
             // 
             // _listBoxContextMenu
             // 
-            this._listBoxContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
+            this._listBoxContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._listBoxContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._editListBoxMenuItem,
             this._advancedEditListBoxMenuItem,
             this._compactListBoxMenuItem,
             this._launchListBoxMenuItem,
             this._removeV2tag});
+            this._listBoxContextMenu.Name = "_listBoxContextMenu";
+            this._listBoxContextMenu.Size = new System.Drawing.Size(203, 124);
             // 
             // _editListBoxMenuItem
             // 
-            //this._editListBoxMenuItem.Index = 0;
+            this._editListBoxMenuItem.Name = "_editListBoxMenuItem";
+            this._editListBoxMenuItem.Size = new System.Drawing.Size(202, 24);
             this._editListBoxMenuItem.Text = "Edit";
             this._editListBoxMenuItem.Click += new System.EventHandler(this._mainListBoxMenu_EditTag);
             // 
             // _advancedEditListBoxMenuItem
             // 
-            //this._advancedEditListBoxMenuItem.Index = 1;
+            this._advancedEditListBoxMenuItem.Name = "_advancedEditListBoxMenuItem";
+            this._advancedEditListBoxMenuItem.Size = new System.Drawing.Size(202, 24);
             this._advancedEditListBoxMenuItem.Text = "Advanced Edit";
             this._advancedEditListBoxMenuItem.Click += new System.EventHandler(this._mainListBoxMenu_EditExtendedTag);
             // 
             // _compactListBoxMenuItem
             // 
-            //this._compactListBoxMenuItem.Index = 2;
+            this._compactListBoxMenuItem.Name = "_compactListBoxMenuItem";
+            this._compactListBoxMenuItem.Size = new System.Drawing.Size(202, 24);
             this._compactListBoxMenuItem.Text = "Compact";
             this._compactListBoxMenuItem.Click += new System.EventHandler(this._mainListBoxMenu_Compact);
             // 
             // _launchListBoxMenuItem
             // 
-            //this._launchListBoxMenuItem.Index = 3;
+            this._launchListBoxMenuItem.Name = "_launchListBoxMenuItem";
+            this._launchListBoxMenuItem.Size = new System.Drawing.Size(202, 24);
             this._launchListBoxMenuItem.Text = "Launch";
             this._launchListBoxMenuItem.Click += new System.EventHandler(this._mainListBoxMenu_Launch);
             // 
             // _removeV2tag
             // 
-            //this._removeV2tag.Index = 4;
+            this._removeV2tag.Name = "_removeV2tag";
+            this._removeV2tag.Size = new System.Drawing.Size(202, 24);
             this._removeV2tag.Text = "Remove ID3V2 tag";
             this._removeV2tag.Click += new System.EventHandler(this._removeV2tag_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.AutoScaleBaseSize = new System.Drawing.Size(7, 20);
             this.ClientSize = new System.Drawing.Size(672, 387);
             this.Controls.Add(this._mainListBox);
             this.MainMenuStrip = this._mainMenu;
             this.Name = "MainForm";
             this.Text = "ID3 Editor";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this._mainMenu.ResumeLayout(false);
+            this._mainMenu.PerformLayout();
+            this._listBoxContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

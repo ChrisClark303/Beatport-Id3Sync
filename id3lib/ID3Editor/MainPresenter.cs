@@ -75,7 +75,7 @@ namespace TagEditor
         public MainPresenter( MainForm form )
         {
             _form = form;
-            _rootdir = Properties.Settings.Default.Directory;
+            _rootdir = @"C:\Users\fredd\OneDrive\Documents\Test";
         }
 
         public void Start()

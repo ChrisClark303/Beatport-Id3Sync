@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beatport.Id3Sync.TagManager
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "id3lib", "id3lib", "{7E57985B-2B66-4C7D-AF86-5A775B2888C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Id3Lib", "id3lib\ID3Lib\Id3Lib.csproj", "{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Id3Lib", "id3lib\ID3Lib\Id3Lib.csproj", "{4C0E405B-FBE5-4949-8953-0B4AEB0D22B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3Lib", "id3lib\Mp3Lib\Mp3Lib.csproj", "{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mp3Lib", "id3lib\Mp3Lib\Mp3Lib.csproj", "{E16E2254-A7A2-4E45-95B9-8613C67B3FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagEditor", "id3lib\ID3Editor\TagEditor.csproj", "{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagEditor", "id3lib\ID3Editor\TagEditor.csproj", "{B4F5E893-FDC7-4DD8-9ABE-F35A5016F5BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "id3lib\Utils\Utils.csproj", "{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beatport.Id3Sync.Service", "Beatport.Id3Sync.Service\Beatport.Id3Sync.Service.csproj", "{7185D027-F489-4D23-83AB-60C4E6C761FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C90C1E-92B7-4AD5-95D3-BF823499BE06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7185D027-F489-4D23-83AB-60C4E6C761FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7185D027-F489-4D23-83AB-60C4E6C761FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7185D027-F489-4D23-83AB-60C4E6C761FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7185D027-F489-4D23-83AB-60C4E6C761FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

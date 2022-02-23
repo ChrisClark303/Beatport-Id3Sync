@@ -45,6 +45,15 @@ namespace Id3Lib
         }
 
         /// <summary>
+        /// Get the content group description.
+        /// </summary>
+        public string ContentGroup
+        {
+            get { return GetTextFrame("TIT1"); }
+            set { SetTextFrame("TIT1", value); }
+        }
+
+        /// <summary>
         /// Get the title / song name / content description.
         /// </summary>
         public string Title
@@ -60,6 +69,15 @@ namespace Id3Lib
         {
             get { return GetTextFrame("TPE1"); }
             set { SetTextFrame("TPE1", value); }
+        }
+
+        /// <summary>
+        /// Get the band/composer.
+        /// </summary>
+        public string AlbumArtist
+        {
+            get { return GetTextFrame("TPE2"); }
+            set { SetTextFrame("TPE2", value); }
         }
 
         /// <summary>
@@ -122,6 +140,12 @@ namespace Id3Lib
         {
             get { return GetTextFrame("TPOS"); }
             set { SetTextFrame("TPOS", value); }
+        }
+
+        public string Publisher
+        {
+            get { return GetTextFrame("TPUB"); }
+            set { SetTextFrame("TPUB", value); }
         }
 
         /// <summary>
@@ -252,7 +276,7 @@ namespace Id3Lib
             var frame = FindFrame(frameId);
             if (frame != null)
             {
-                return ((FrameText)frame).Text;
+                return ((FrameText)frame).Text.Trim('\0');
             }
             return string.Empty;
         }

@@ -266,7 +266,7 @@ namespace Mp3Lib
         private void UpdateInSitu( uint tagSizeComplete )
         {
             // if tag is before the audio, it shouldn't have a footer
-            Debug.Assert(TagModel.Header.Footer == false);
+            Debug.Assert(!TagModel.Header.Footer);
 
             // calculate enough padding to fill the gap between tag and audio start
             TagModel.Header.PaddingSize = _audioStart - tagSizeComplete;
