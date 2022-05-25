@@ -13,6 +13,11 @@ namespace Beatport.Id3Sync.Service
 {
     class Program
     {
+        //static async Task<int> StartWithTopShelf()
+        //{
+
+        //}
+
         static async Task<int> Main(string[] args)
         {
             return await Parser.Default.ParseArguments<CommandLineOptions>(args)
@@ -42,7 +47,8 @@ namespace Beatport.Id3Sync.Service
         {
             services.AddSingleton<ITagProcessorOptions>(options);
             services.AddSingleton<Serilog.ILogger>(Serilog.Log.Logger);
-            services.AddHostedService<TagProcessor>();
+            services.AddSingleton<IFileWatcher,BeatportFileWatcher>();
+            services.AddHostedService<TagProcessManager>();
         }
 
         private static void SetupLogger()
@@ -56,8 +62,9 @@ namespace Beatport.Id3Sync.Service
 
         private static string CreateFilepathForLogging()
         {
-            var appRoot = new FileInfo(typeof(Program).Assembly.Location).DirectoryName;
-            var logPath = @$"{appRoot}\logs\log.txt";
+            var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var appRoot = Path.Combine(appData, "BeatPort_Id3Sync", "logs");
+            var logPath = @$"{appRoot}\log.txt";
             return logPath;
         }
     }

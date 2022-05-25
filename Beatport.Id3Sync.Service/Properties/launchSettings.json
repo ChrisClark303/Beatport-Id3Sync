@@ -2,7 +2,7 @@
   "profiles": {
     "Beatport.Id3Sync.Service": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\fredd\\Music\\Beatport \"C:\\Users\\fredd\\Music\\Beatport (processed)\""
+      "commandLineArgs": "D:\\Beatport\\New D:\\Beatport\\Processed"
     }
   }
 }
