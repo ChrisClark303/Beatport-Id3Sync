@@ -3,12 +3,24 @@ using Microsoft.Extensions.Hosting;
 using Mp3Lib;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Beatport.Id3Sync.TagManager
 {
+    public class FileAddedEventArgs : EventArgs
+    {
+        public string FilePath { get; }
+
+        public FileAddedEventArgs(string filePath)
+        {
+            FilePath = filePath;
+        }
+    }
+
     public class BeatportFileWatcher : IFileWatcher
     {
         private readonly string _watchPath;
@@ -20,6 +32,10 @@ namespace Beatport.Id3Sync.TagManager
             _watchPath = options.SourcePath;
             _logger = logger;
         }
+
+        public event EventHandler<FileAddedEventArgs> FileAdded;
+
+        private List<string> _createdFiles = new List<string>();
 
         public void Start()
         {
@@ -35,12 +51,28 @@ namespace Beatport.Id3Sync.TagManager
                 try
                 {
                     _logger.Debug("File created: {@FileSystemEventArgs}", e);
+                    _createdFiles.Add(e.Name);
+                    //FileAdded?.Invoke(this, new FileAddedEventArgs(e.FullPath));
                     //var waitTask = Task.Delay(1000)
                     //    .ContinueWith((t) => ProcessFile(e.FullPath));
                 }
                 catch (Exception ex)
                 {
                     _logger.Error(ex, $"An error occurred handling a file created event : {ex.Message}");
+                }
+            };
+
+            _watcher.Changed += async (object sender, FileSystemEventArgs e) =>
+            {
+                _logger.Debug("File changed: {@FileSystemEventArgs}", e);
+                if (_createdFiles.Contains(e.Name))
+                {
+                    var waitTask = Task.Delay(1000)
+                        .ContinueWith((t) =>
+                        {
+                            FileAdded?.Invoke(this, new FileAddedEventArgs(e.FullPath));
+                            _createdFiles.Remove(e.Name);
+                        });
                 }
             };
 
@@ -53,56 +85,69 @@ namespace Beatport.Id3Sync.TagManager
     public class TagProcessManager : BackgroundService
     {
         private readonly IFileWatcher _fileWatcher;
+        private readonly ILogger _logger;
+        private readonly ITagProcessor _tagProcessor;
 
-        public TagProcessManager(IFileWatcher fileWatcher)
+        public TagProcessManager(IFileWatcher fileWatcher, ILogger logger, ITagProcessor tagProcessor)
         {
             _fileWatcher = fileWatcher;
+            _logger = logger;
+            _tagProcessor = tagProcessor;
         }
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _fileWatcher.FileAdded += (s, e) => 
+            {
+                _logger.Information("Handled file added: {@FileAddedEventArgs}", e);
+                _tagProcessor.ProcessFile(e.FilePath);
+            };
             _fileWatcher.Start();
         }
     }
 
 
-    public class TagProcessor : BackgroundService
+    public class TagProcessor : ITagProcessor
     {
         private readonly ITagProcessorOptions _options;
         private readonly ILogger _logger;
+        private readonly char[] _invalidChars;
 
         public TagProcessor(ITagProcessorOptions options, ILogger logger)
         {
             _options = options;
             _logger = logger;
+            var invalidFileChars = Path.GetInvalidFileNameChars();
+            var invalidPathChars = Path.GetInvalidPathChars();
+            _invalidChars = invalidPathChars.Union(invalidFileChars).ToArray();
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            FileSystemWatcher watcher = new FileSystemWatcher
-            {
-                Path = _options.SourcePath,
-                Filter = "*.mp3",
-                IncludeSubdirectories = true,
-                InternalBufferSize = (16384 * 8)
-            };
-            watcher.Created += async (object sender, FileSystemEventArgs e) =>
-            {
-                try
-                {
-                    _logger.Debug("File created: {@FileSystemEventArgs}", e);
-                    var waitTask = Task.Delay(1000)
-                        .ContinueWith((t) => ProcessFile(e.FullPath));
-                }
-                catch(Exception ex)
-                {
-                    _logger.Error(ex, $"An error occurred handling a file created event : {ex.Message}");
-                }
-            };
+        //protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        //{
+        //    FileSystemWatcher watcher = new FileSystemWatcher
+        //    {
+        //        Path = _options.SourcePath,
+        //        Filter = "*.mp3",
+        //        IncludeSubdirectories = true,
+        //        InternalBufferSize = (16384 * 8)
+        //    };
+        //    watcher.Created += async (object sender, FileSystemEventArgs e) =>
+        //    {
+        //        try
+        //        {
+        //            _logger.Debug("File created: {@FileSystemEventArgs}", e);
+        //            var waitTask = Task.Delay(1000)
+        //                .ContinueWith((t) => ProcessFile(e.FullPath));
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            _logger.Error(ex, $"An error occurred handling a file created event : {ex.Message}");
+        //        }
+        //    };
 
-            _logger.Information("Starting tag processor");
-            watcher.EnableRaisingEvents = true;
-            _logger.Information("Listening for file changes");
-        }
+        //    _logger.Information("Starting tag processor");
+        //    watcher.EnableRaisingEvents = true;
+        //    _logger.Information("Listening for file changes");
+        //}
 
         public async Task ProcessFile(string file)
         {
@@ -131,7 +176,7 @@ namespace Beatport.Id3Sync.TagManager
                 _logger.Error(ex, $"An error occurred copying file: {tagHandler.Title}");
                 throw;
             }
-            
+
             tagHandler = UpdateId3Tags(tagHandler, copyFilePath, artist);
 
             try
@@ -180,21 +225,23 @@ namespace Beatport.Id3Sync.TagManager
         private string CreateDirectoriesForProcessedMp3(TagHandler tagHandler, string artist, string album)
         {
             string copyFilePath;
-            string fileName = $"{artist} - {tagHandler.Title}.mp3";
-            copyFilePath = CreateSafePathForFile(artist, album, fileName);
+            copyFilePath = CreateSafePathForFile(artist, album, tagHandler.Title);
             return copyFilePath;
         }
 
-        private string CreateSafePathForFile(string artist, string album, string fileName)
+        private string CreateSafePathForFile(string artist, string album, string title)
         {
             var pathSafeArtist = artist;
             var pathSafeAlbum = album;
-            var invalidChars = Path.GetInvalidFileNameChars();
-            foreach (var invalidChar in invalidChars)
+            var pathSafeTitle = title;
+
+            foreach (var invalidChar in _invalidChars)
             {
                 pathSafeAlbum = pathSafeAlbum.Replace(invalidChar, '_');
                 pathSafeArtist = pathSafeArtist.Replace(invalidChar, '_');
+                pathSafeTitle = pathSafeTitle.Replace(invalidChar, '_');
             }
+            string fileName = $"{pathSafeArtist} - {pathSafeTitle}.mp3";
             var artistDir = Directory.CreateDirectory(Path.Combine(_options.OutputPath, pathSafeArtist));
             var albumDir = Directory.CreateDirectory(Path.Combine(artistDir.FullName, pathSafeAlbum));
             return Path.Combine(albumDir.FullName, fileName);

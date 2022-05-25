@@ -48,6 +48,7 @@ namespace Beatport.Id3Sync.Service
             services.AddSingleton<ITagProcessorOptions>(options);
             services.AddSingleton<Serilog.ILogger>(Serilog.Log.Logger);
             services.AddSingleton<IFileWatcher,BeatportFileWatcher>();
+            services.AddSingleton<ITagProcessor, TagProcessor>();
             services.AddHostedService<TagProcessManager>();
         }
 
