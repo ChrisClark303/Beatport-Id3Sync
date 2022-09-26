@@ -17,4 +17,10 @@
     <ProjectReference Include="..\Beatport.Id3Sync.TagManager\Beatport.Id3Sync.TagManager.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="service-install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
